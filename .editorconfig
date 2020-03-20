@@ -1,0 +1,17 @@
+root = true  #是否是顶级配置文件，设置为true的时候才会停止搜索.editorconfig文件
+
+[*]
+charset = utf-8    #<"latin" | "utf-8" | "utf-8-bom" | "utf-16be" | "utf-16le">     :    文件编码格式
+end_of_line = lf    #<"lf" | "cr" | "crlf">    ：    换行符类型
+indent_size = 2     #<number>    ：    缩进大小
+indent_style = space    #<"tab" | "space">    ：  缩进方式
+insert_final_newline = true   #<boolean>   ：     是否让文件以空行结束
+max_line_length = 100     #<number>    ：    最大行宽。
+trim_trailing_whitespace = true   #<boolean>  ：   是否删除行尾空格
+
+[*.md]
+max_line_length = 0
+trim_trailing_whitespace = false
+
+[COMMIT_EDITMSG]
+max_line_length = 0
