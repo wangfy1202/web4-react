@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
 const webpack = require("webpack");
 const ENV = process.env.NODE_ENV;
@@ -13,7 +14,8 @@ const makePlugins = () => {
     new HtmlWebpackPlugin({
       template: "src/index.html"
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new CopyPlugin([{ from: "src/json/", to: "json/" }]) //复制文件，from复制的文件地址，to复制到的地方
   ];
 
   const files = fs.readdirSync(path.resolve(__dirname, "../dll"));
