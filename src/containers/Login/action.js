@@ -7,12 +7,12 @@ export const loginAction = (data, callback) => async dispatch => {
     data,
     headers: { token: data.result }
   });
-  console.log(response);
-  console.log(dispatch);
-  // dispatch({ type: LOGIN, data: { token: "123" } });
-  // Storage.Session.set("token", "123");
-  Storage.Session.set("user", JSON.stringify(data.username));
-  if (callback) {
-    callback();
+  if (response.status) {
+    dispatch({ type: LOGIN, data: { token: response.result } });
+    Storage.Session.set("token", response.result);
+    Storage.Session.set("user", JSON.stringify(data.username));
+    if (callback) {
+      callback();
+    }
   }
 };
