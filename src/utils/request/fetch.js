@@ -12,11 +12,10 @@ export default async function({
   data = {},
   headers = { "Content-Type": "application/json" },
   loading = false,
-  timeout = 200000000
+  timeout = 2000
 }) {
   // fetch promise
   const fetchPromise = new Promise(resolve => {
-    console.log(resolve);
     let requestConfig = {
       method,
       headers: {
@@ -41,7 +40,7 @@ export default async function({
     }
 
     // method & data
-    if (method.toLowerCase === "post") {
+    if (method.toLowerCase() === "post") {
       const contentType = requestConfig.headers["Content-Type"];
       if (contentType == "application/json") {
         Object.defineProperty(requestConfig, "body", {
@@ -54,7 +53,7 @@ export default async function({
           form.append(key, data[key]);
         });
       }
-    } else if (method.toLowerCase === "get") {
+    } else if (method.toLowerCase() === "get") {
       const str = Object.entries(data)
         .reduce((acc, cur) => acc.concat(cur.join("=")), [])
         .join("&");
@@ -102,9 +101,8 @@ export default async function({
   loading && Toast.loading("loading");
 
   try {
-    const result = new Promise.race([fetchPromise, timeoutPromise]);
+    const result = await Promise.race([fetchPromise, timeoutPromise]);
     Toast.hide();
-    console.log(result);
     if (result.type === "file") {
       let { blob, filename } = result;
       blob.then(data => {
