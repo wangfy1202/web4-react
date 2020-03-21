@@ -37,6 +37,6 @@ const PrivateRoute = props => {
   );
 };
 const mapStateToProps = state => ({
-  token: state.indexReducer.token
+  token: state.loginReducer.token
 });
 export default connect(mapStateToProps)(App);
