@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.js",
+    "build": "npm run build:prod",
+    "build:pr": "cross-env NODE_ENV=production BUILD_ENV=pr webpack --config build/webpack.prod.js",
+    "build:prod": "cross-env NODE_ENV=production BUILD_ENV=prod webpack --config build/webpack.prod.js",
+    "build:sit": "cross-env NODE_ENV=production BUILD_ENV=sit webpack --config build/webpack.prod.js",
+    "build:uat": "cross-env NODE_ENV=production BUILD_ENV=uat webpack --config build/webpack.prod.js",
     "dll": "cross-env NODE_ENV=production webpack --config ./build/webpack.dll.js",
-    "start": "webpack-dev-server --config ./build/webpack.dev.js"
+    "start": "npm run dev",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js"
   },
   "keywords": [],
   "author": "Wang FY",

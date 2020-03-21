@@ -21,21 +21,30 @@ const App = props => {
     </Router>
   );
 };
-const PrivateRoute = props => {
-  const { component: Component, token, ...rest } = props;
-  return (
-    <Route
-      {...rest}
-      render={props => {
-        token ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-        );
-      }}
-    />
-  );
-};
+
+class PrivateRoute extends React.Component {
+  render() {
+    let { component: Component, token, ...rest } = this.props;
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          token ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+}
+
 const mapStateToProps = state => ({
   token: state.loginReducer.token
 });
