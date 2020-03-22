@@ -59,8 +59,8 @@ export default async function({
         .join("&");
       url += "?" + str;
     }
-
-    fetch(url, requestConfig)
+    console.log(requestConfig);
+    fetch(url)
       .then(response => response)
       .then(response => {
         // 解析数据
