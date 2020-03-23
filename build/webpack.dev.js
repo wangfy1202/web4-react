@@ -13,9 +13,17 @@ module.exports = merge(common, {
     port: 8080,
     // hot: true,
     // hotOnly: true,
+    // progress: true,   //显示打包的文件和进度
     historyApiFallback: true,
+    //proxy 代理前端开发环境解决跨域的问题 node写一个中间层
     proxy: {
-      "/react/api": "http://www.dell-lee.com"
+      // "/react/api": "http://www.dell-lee.com"
+      "/": {
+        // 凡是"/"开始的接口地址都转到 target这个地址下面
+        target: "http://www.dell-lee.com",
+        // changeOrigin 改变源devServer会帮我们起一个服务
+        changeOrigin: true
+      }
     }
   },
   module: {
