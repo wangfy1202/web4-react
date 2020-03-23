@@ -4,7 +4,15 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    react: ["react", "react-dom", "react-router-dom", "axios"],
+    react: [
+      "react",
+      "react-dom",
+      "redux",
+      "react-redux",
+      "redux-thunk",
+      "react-router-dom",
+      "axios"
+    ],
     ui: ["antd-mobile"]
   },
   output: {
